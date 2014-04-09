@@ -1,0 +1,22 @@
+{
+	"port": 9999,
+	"mongoose": {
+		"uri": "mongodb://localhost/chat",
+		"options": {
+			"server": {
+				"socketOptions": {
+					"keepAlive": 1
+				}
+			}
+		}
+	},
+	"session": {
+		"secret": "metal_only)"
+	},
+	"twitterAuth": {
+		"consumerKey"   : "publicKeyHere",
+		"consumerSecret": "SecretKeyHere",
+		"callbackURL"   : "callbackURL"
+	}
+
+}

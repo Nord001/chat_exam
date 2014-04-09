@@ -1,0 +1,103 @@
+.margin-0 {
+	margin: 0;
+}
+
+#game {
+	width: 702px;
+	height: 502px;
+	border: 1px solid #ccc;
+	overflow: hidden;
+}
+
+.white {
+	color: #f9f9f9;
+	background-color: #fff;
+}
+
+.chat {
+	position: fixed;
+	top: 52px;
+	bottom: 0px;
+	right: 0px;
+	width: 300px;
+	background-color: black;
+	border-radius: 4px;
+	opacity: 0.7;	
+}
+
+.chat_messages {
+	margin: 10px;
+	height: calc(100% - 140px);
+	overflow: auto;
+}
+
+.chat_messages ul li {
+	color: white;
+}
+
+.chat_control {
+	position: absolute;
+	width: 280px;
+	margin: 10px;
+	bottom: 0px;
+}
+
+.chat_control div textarea {
+	margin-bottom: 10px;
+	color: black;
+}
+
+.chat_control div button {
+	width: 130px;
+}
+
+.chat_control div button:first-child {
+	margin-right: 16px;
+}
+
+.hide-chat {
+	-webkit-animation: hide_messages 0.6s forwards 0.1s, hide_chat 0.4s forwards 1s;
+}
+
+.hide-chat-styles {
+	top: calc(100% - 140px);
+	width: 0;
+	-webkit-animation: unhide_messages 0.6s forwards 0.7s, unhide_chat 0.4s forwards 0.1s;
+}
+
+.scale-messages {
+	-webkit-animation: scale_messages 0.4s forwards 0.1s;
+}
+
+.scale-messages-styles {
+	-webkit-transform: scaleY(0.1);
+	opacity: 0;
+	-webkit-animation: unscale_messages 0.4s forwards 0.7s;
+}
+
+@-webkit-keyframes hide_messages {
+	100% {top: calc(100% - 140px);}
+}
+
+@-webkit-keyframes hide_chat {
+	100% {width: 0;}
+}
+
+@-webkit-keyframes scale_messages {
+	100% {-webkit-transform: scaleY(0.1);
+	opacity: 0;}
+}
+
+
+@-webkit-keyframes unhide_messages {
+	100% {top: 52px;}
+}
+
+@-webkit-keyframes unhide_chat {
+	100% {width: 300px;}
+}
+
+@-webkit-keyframes unscale_messages {
+	100% {-webkit-transform: scaleY(1);
+	opacity: 1;}
+}

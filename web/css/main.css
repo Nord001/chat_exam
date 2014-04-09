@@ -58,31 +58,34 @@ html {
 	left: 100px;
 	width: 240px;
 	height: 300px;
-	border: 1px solid red;
 }
 
 .popup_chat .chat_header {
-	border: 1px solid black;
 	cursor: move;
 	height: 10%;
 	padding: 5px;
 	vertical-align: middle;
 }
 
+.popup_chat .chat_header h3 {
+	font-size: 13px;
+}
+
 .popup_chat .chat_messages {
 	margin-top: 0px;
 	height: 70%;
-	border: 1px solid transparent;
 }
 
 .popup_chat .chat_control {
 	height: 20%;
-	border: 1px solid green;
+	padding: 5px;
 }
 
 .popup_chat .chat_control div {
 	height: 100%;
+	background-color: white;
 	outline: medium none;
 	overflow: hidden;
-	padding: 5px;
+	border-radius: 4px;
+
 }

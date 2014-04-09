@@ -1,6 +1,7 @@
 define(['jquery',
+		'controllers/popupChatsController',
 		'bacon'
-], function($) {
+], function($, drag) {
 	$(function() {
 		var $chat_messages = $("#chat .chat_messages");
 
@@ -11,5 +12,6 @@ define(['jquery',
 		w.onValue(function() {
 			$chat_messages.height($(window).height() - 330);
 		});
+		drag($('#id'));
 	});
 });

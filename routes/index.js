@@ -1,7 +1,7 @@
 var HttpError = require('../error').HttpError;
 
 module.exports = function(app, passport) {
-	app.get('/', function(req, res, next) {
+	app.get('/', isLoggedIn, function(req, res, next) {
 		res.render('main', {
 			title: "Geeks chat",
 			player: req.user

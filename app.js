@@ -24,7 +24,7 @@ if (app.get('env') == 'development') {
 	app.use(express.static(path.join(__dirname, 'web')));
 } else {
 	app.use(express.logger('default'));
-	app.use(express.static(path.join(__dirname, 'public')));
+	app.use(express.static(path.join(__dirname, 'web')));
 }
 
 app.use(express.bodyParser());

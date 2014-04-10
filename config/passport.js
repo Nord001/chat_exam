@@ -29,7 +29,7 @@ module.exports = function(passport) {
 					return done(err);
 				}
 				if (user) {
-					return done(null, false, req.flash('signupMessage', "That email is already taken."));
+					return done(null, false);
 				} else {
 					var newUser            = new User();
 					newUser.local.email    = email;
@@ -58,10 +58,10 @@ module.exports = function(passport) {
 				return done(err);
 			};
 			if (!user) {
-				return done(null, false, req.flash('loginMessage', 'No user found.'));
+				return done(null, false);
 			};
 			if (!user.validPassword(password)) {
-				return done(null, false, req.flash('loginMessage', 'wrong passwoed'));
+				return done(null, false);
 			};
 			return done(null, user);
 		});

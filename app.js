@@ -62,6 +62,10 @@ app.use(function(err, req, res, next) {
 
 server = http.createServer(app);
 
+var io = require('./libs/socket')(server);
+
+require('./libs/chat')(io);
+
 server.listen(config.get('port'), function() {
 	log.info('Express server listening on port ' + config.get('port'));
 });

@@ -16,16 +16,8 @@ define(['jquery',
 		});
 	});
 
-	$('#chat_send').on('click', function() {
-		chatLV.addChatItem('James Bond', 007);
-	});
-
 	$(document).on('click', '#chat_close', function() {
 		chatLV.removeChatItem(007);
-	});
-
-	$("#findContact").on('click', function() {
-		chatLV.setUnreadMessages(007, 5);
 	});
 
 	drag($('#id'));

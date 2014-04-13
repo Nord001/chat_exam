@@ -15,6 +15,6 @@ function getLogger(module) {
 			})
 		]
 	});
-}
+};
 
 module.exports = getLogger;

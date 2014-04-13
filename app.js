@@ -1,11 +1,15 @@
-var express   = require('express');
-var http      = require('http');
-var path      = require('path');
-var mongoose  = require('./libs/mongoose');
-var passport  = require('passport');
-var config    = require('./config');
-var log       = require('./libs/log')(module);
-var HttpError = require('./error').HttpError;
+var express          = require('express');
+var http             = require('http');
+var path             = require('path');
+var mongoose         = require('./libs/mongoose');
+var passport         = require('passport');
+var passportSocketIo = require('passport.socketio');
+var config           = require('./config');
+var log              = require('./libs/log')(module);
+var HttpError        = require('./error').HttpError;
+var MongoStore       = require("connect-mongo")(express);
+
+var store = new MongoStore({db: mongoose.connection.db})
 
 var app = express();
 
@@ -31,7 +35,8 @@ app.use(express.bodyParser());
 app.use(express.cookieParser());
 
 app.use(express.session({
-	secret: config.get('session:secret')
+	secret: config.get('session:secret'),
+	store: store
 }));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -63,6 +68,28 @@ app.use(function(err, req, res, next) {
 server = http.createServer(app);
 
 var io = require('./libs/socket')(server);
+
+io.set('authorization', passportSocketIo.authorize({
+	cookieParser: express.cookieParser,
+	secret: config.get('session:secret'),
+	store: store,
+	success: onAuthorizeSuccess,
+	fail: onAuthorizeFail
+}));
+
+function onAuthorizeSuccess(data, accept){
+  console.log('successful connection to socket.io');
+
+  accept(null, true);
+}
+
+function onAuthorizeFail(data, message, error, accept){
+  if(error)
+    throw new Error(message);
+  console.log('failed connection to socket.io:', message);
+
+  accept(null, false);
+}
 
 require('./libs/chat')(io);
 

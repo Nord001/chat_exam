@@ -15,6 +15,11 @@ html {
 	overflow: auto;
 }
 
+#chat .chat_messages pre {
+	padding: 5px;
+	margin: 0;
+}
+
 #chat .label {
 	white-space: normal;
 }
@@ -28,15 +33,12 @@ html {
 }
 
 #chat .chat_control div textarea {
-	width: 97%;
+	width: 100%;
 	margin-bottom: 10px;
 	color: black;
 }
 
 #chat .chat_control div button {
-}
-
-#chat .chat_control div button:first-child {
 	margin-right: 16px;
 }
 

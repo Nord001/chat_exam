@@ -20,4 +20,6 @@ require([
 	'controllers/mainController',
 	'controllers/chatListController',
 	'controllers/chatController',
+	'controllers/smileController',
+	'controllers/popoversController',
 ]);

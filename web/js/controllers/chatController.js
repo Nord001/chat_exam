@@ -1,14 +1,17 @@
 define(['jquery',
 	'../services/socket',
 	'../views/chatView',
+	'text!templates/smileContainer.html',
 	'bacon'
-], function($, socket, chatView) {
+], function($, socket, chatView, smileContainer) {
 	function keyCodeIs(keyCode) { 
 		return function(event) { return event.keyCode == keyCode && !event.shiftKey}
 	};
 
-	var $input    = $(".chat_txt_area");
-	var $send_btn = $('#chat_send');
+	var $input     = $(".chat_txt_area");
+	var $send_btn  = $('#chat_send');
+	var $smile_btn = $('#chat_smile');
+	var $clear_btn = $('#chat_clear');
 
 	var sendStream = $send_btn.asEventStream('click');
 	var inputStream = $input.asEventStream('keyup').filter(keyCodeIs(13));
@@ -23,6 +26,7 @@ define(['jquery',
 	messagesStream.onValue(function() {
 		socket.emit('chat', $input.val());
 		$input.val('');
+		$input.focus();
 		return false;
 	});
 
@@ -30,9 +34,16 @@ define(['jquery',
 		chatView.addMsg(msg);
 	});
 
-	$("#findContact").on('click', function() {
-		chatView.addMsg("sdfsd", "sdfsd");
+	$smile_btn.popover({
+		html: true,
+		content: smileContainer
 	});
+
+	$clear_btn.on('click', function() {
+		$input.val('');
+		$input.focus();
+	});
+
 });
 
 	

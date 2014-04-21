@@ -42,6 +42,10 @@ html {
 	margin-right: 16px;
 }
 
+#chat .chat_control .popover.top {
+	margin-top: -43px;
+}
+
 #chat .chat_txt_area {
 	font-size: 14px;
 	line-height: 1.42857143;
@@ -107,4 +111,14 @@ html {
 
 #chat_list .list-group-item button:last-child {
 	margin-right: 5px;
+}
+
+.smiles_container button {
+	margin-right: 0px !important;
+	margin-bottom: 3px;
+	padding: 3px 7px;
+}
+
+.smiles_container button:active, .smiles_container button:focus, .smiles_container button:hover {
+	background-color: #fff;
 }

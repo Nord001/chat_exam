@@ -3,7 +3,7 @@
 {% block title %}{{ title }}{% endblock %}
 
 {% block login %}
-	<p class="navbar-text">Signed in as <a href="/profile" class="navbar-link">{{ player.local.email }}{{player.twitter.username}}</a></p>
+	<p class="navbar-text">Signed in as <a href="#" class="navbar-link">{{ player.local.email }}{{player.twitter.username}}</a></p>
 	<li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Sign out</a></li>
 {% endblock %}
 	
@@ -45,9 +45,18 @@
 							<textarea class="chat_txt_area" rows="3"></textarea>
 						</div>
 						<div>
-							<button id="chat_send" type="button" class="btn btn-primary">Send</button>
-							<button id="chat_smile" type="button" class="btn btn-primary">Smile</button>
-							<button id="chat_clear" type="button" class="btn btn-warning">Clear</button>
+							<button id="chat_send" type="button" class="btn btn-primary">
+								<span class="glyphicon glyphicon-send"></span>
+								Send
+							</button>
+							<button id="chat_smile" type="button" class="btn btn-primary" data-input=".chat_txt_area" data-toggle="popover" data-placement="top">
+								<img src="img/smile-white.png">
+								Smile
+							</button>
+							<button id="chat_clear" type="button" class="btn btn-warning">
+								<span class="glyphicon glyphicon-remove"></span>
+								Clear
+							</button>
 						</div>
 					</div>
 				</div>

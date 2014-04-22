@@ -15,6 +15,12 @@ html {
 	overflow: auto;
 }
 
+#chat .chat_messages pre {
+	padding: 5px;
+	margin: 0;
+	background-color: #fff;
+}
+
 #chat .label {
 	white-space: normal;
 }
@@ -23,20 +29,13 @@ html {
 	margin-bottom: 10px;
 }
 
-#chat .chat_control {
-
-}
-
 #chat .chat_control div textarea {
-	width: 97%;
+	width: 100%;
 	margin-bottom: 10px;
 	color: black;
 }
 
 #chat .chat_control div button {
-}
-
-#chat .chat_control div button:first-child {
 	margin-right: 16px;
 }
 
@@ -105,4 +104,19 @@ html {
 
 #chat_list .list-group-item button:last-child {
 	margin-right: 5px;
+}
+
+.smiles_container {
+	height: 62px;
+	width: 236px;
+}
+
+.smiles_container button {
+	margin-right: 0px !important;
+	margin-bottom: 3px;
+	padding: 3px 7px;
+}
+
+.smiles_container button:active, .smiles_container button:focus, .smiles_container button:hover {
+	background-color: #fff;
 }

@@ -26,9 +26,11 @@ app.use(express.favicon());
 if (app.get('env') == 'development') {
 	app.use(express.logger('dev'));
 	app.use(express.static(path.join(__dirname, 'web')));
+	log.info('dev');
 } else {
 	app.use(express.logger('default'));
-	app.use(express.static(path.join(__dirname, 'web')));
+	app.use(express.static(path.join(__dirname, 'web'), { maxAge: 86400000 }));
+	log.info('def');
 }
 
 app.use(express.bodyParser());

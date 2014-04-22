@@ -18,6 +18,7 @@ html {
 #chat .chat_messages pre {
 	padding: 5px;
 	margin: 0;
+	background-color: #fff;
 }
 
 #chat .label {
@@ -28,10 +29,6 @@ html {
 	margin-bottom: 10px;
 }
 
-#chat .chat_control {
-
-}
-
 #chat .chat_control div textarea {
 	width: 100%;
 	margin-bottom: 10px;
@@ -40,10 +37,6 @@ html {
 
 #chat .chat_control div button {
 	margin-right: 16px;
-}
-
-#chat .chat_control .popover.top {
-	margin-top: -43px;
 }
 
 #chat .chat_txt_area {
@@ -111,6 +104,11 @@ html {
 
 #chat_list .list-group-item button:last-child {
 	margin-right: 5px;
+}
+
+.smiles_container {
+	height: 62px;
+	width: 236px;
 }
 
 .smiles_container button {

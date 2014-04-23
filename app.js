@@ -79,6 +79,10 @@ io.set('authorization', passportSocketIo.authorize({
 	fail: onAuthorizeFail
 }));
 
+if (app.get('env') !== 'development') {
+	io.set('log level', 1);
+}
+
 function onAuthorizeSuccess(data, accept){
   console.log('successful connection to socket.io');
 

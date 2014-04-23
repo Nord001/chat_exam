@@ -20,6 +20,7 @@ module.exports = function (io) {
 		socket.on('pm', function(to, message) {
 			var id = onlineUsers[to];
 			io.sockets.socket(id).emit('pm', user, message);
+			socket.emit('pmme', to, message);
 		});
 
 		socket.on('disconnect', function () {

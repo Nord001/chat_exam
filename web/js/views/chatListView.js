@@ -15,8 +15,21 @@ define(['jquery',
 		$("#chat_list div:last-child").html('');
 	};
 
-	function setUnreadMessages(id, count) {
-		$("#chat_list div:last-child a[data-id=" + id + "] span").text(count);
+	function setUnreadMessages(user, count) {
+		var span = $("#chat_list div:last-child a[data-user='" + user + "'] span");
+
+		if (count == 0) {
+			span.text('');
+		} else{
+			if (span.text()) {
+				var unread = parseInt(span.text()) + count;
+				span.text(unread);
+			} else {
+				span.text(count);
+			}
+			
+			
+		};
 	};
 
 	return {

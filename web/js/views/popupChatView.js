@@ -4,20 +4,22 @@ define(['jquery',
 		'services/smiley'
 ], function($, _, pChat, smile) {
 
-	function addChat(id, user) {
-		$("body").append(_.template(pChat, {
-			user_id  : id,
-			user_name: user
-		}));
+	function addChat(user) {
+		$("body").append(_.template(pChat, {user_name: user}));
 	};
 
-	function removeChat(id) {
-		$(".popup_chat[data-id='" + id + "']").remove();
+	function removeChat(user) {
+		$(".popup_chat[data-user='" + user + "']").remove();
+	}
+
+	function addMessage(user, message) {
+		$(".popup_chat[data-user='" + user + "'] ul.list-unstyled").append("<li>" + message + "</li>");
 	}
 
 	return {
 		addChat   : addChat,
-		removeChat: removeChat
+		removeChat: removeChat,
+		addMessage: addMessage
 	};
 	
 });

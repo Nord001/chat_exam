@@ -1,24 +1,26 @@
 define(['jquery',
 	'../services/socket',
 	'../views/popupChatView',
+	'../views/chatListView',
 	'./popupChatDraggable',
 	'../services/checkKeyCode',
 	'bacon'
-], function($, socket, pcView, drag, chkKC) {
+], function($, socket, pcView, chatLV, drag, chkKC) {
 	var openedPChats      = {};
 	var openedPChatsCount = 0;
 
 	$(document).on('click', "#chat_list .list-group:last-child a", function() {
-		var $id = $(this).data("id");
+		var user = $(this).data("user");
 
-		if (!openedPChats[$id]) {
-			openedPChats[$id] = openedPChatsCount+1;
+		if (!openedPChats[user]) {
+			openedPChats[user] = true;
 			openedPChatsCount += 1;
-			pcView.addChat($id, $(this).data('user'));
-			drag($(".popup_chat[data-id='" + $id + "']").css({top: 350+openedPChats[$id]*10, left: 20+openedPChats[$id]*100}));
+			pcView.addChat(user);
+			chatLV.setUnreadMessages(user, 0);
+			drag($(".popup_chat[data-user='" + user + "']").css({top: 350+openedPChatsCount*10, left: 20+openedPChatsCount*100}));
 		} else {
-			openedPChats[$id] = undefined;
-			pcView.removeChat($id);
+			openedPChats[user] = false;
+			pcView.removeChat(user);
 			openedPChatsCount -= 1;
 		}
 	});
@@ -29,7 +31,7 @@ define(['jquery',
 		$(ev.currentTarget).text("");
 		return {mes : mes,
 				user: user}
-	}
+	};
 
 	var pInputStream    = $(document).asEventStream('keyup', ".popup_chat .chat_control div").filter(chkKC(13)).map(inputVal);
 	var pDisEnterStream = $(document).asEventStream('keydown', ".popup_chat .chat_control div").filter(chkKC(13));
@@ -43,7 +45,15 @@ define(['jquery',
 	});
 
 	socket.on('pm', function(user, message) {
-		console.log(user, message);
-	})
+		if (openedPChats[user]) {
+			pcView.addMessage(user, user + ": " + message);
+		} else {
+			chatLV.setUnreadMessages(user, 1);
+		}
+	});
+
+	socket.on('pmme', function(user, message) {
+		pcView.addMessage(user, "me: " + message);
+	});
 
 });

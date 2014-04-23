@@ -27,8 +27,6 @@ define(['jquery',
 			} else {
 				span.text(count);
 			}
-			
-			
 		};
 	};
 

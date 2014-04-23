@@ -1,3 +1,5 @@
+//showing online users count
+
 define(['../services/socket',
 		'views/chatListView'
 ], function(socket, chatLV) {

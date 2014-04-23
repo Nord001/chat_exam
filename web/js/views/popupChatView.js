@@ -12,8 +12,15 @@ define(['jquery',
 		$(".popup_chat[data-user='" + user + "']").remove();
 	}
 
-	function addMessage(user, message) {
-		$(".popup_chat[data-user='" + user + "'] ul.list-unstyled").append("<li>" + message + "</li>");
+	function addMessage(user, username, message) {
+		var $pChatDiv = $(".popup_chat[data-user='" + user + "'] div");
+		var $pChat = $(".popup_chat[data-user='" + user + "'] ul.list-unstyled");
+
+		$pChat.append("<li><b>" + username + "</b>: " + smile(message) + "</li>");
+
+		$pChatDiv.animate({
+			scrollTop: $pChat.get(0).scrollHeight
+		}, 300);
 	}
 
 	return {

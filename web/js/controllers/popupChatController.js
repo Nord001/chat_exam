@@ -4,8 +4,9 @@ define(['jquery',
 	'../views/chatListView',
 	'./popupChatDraggable',
 	'../services/checkKeyCode',
+	'text!templates/smileContainer.html',
 	'bacon'
-], function($, socket, pcView, chatLV, drag, chkKC) {
+], function($, socket, pcView, chatLV, drag, chkKC, smileContainer) {
 	var openedPChats      = {};
 	var openedPChatsCount = 0;
 
@@ -17,7 +18,14 @@ define(['jquery',
 			openedPChatsCount += 1;
 			pcView.addChat(user);
 			chatLV.setUnreadMessages(user, 0);
-			drag($(".popup_chat[data-user='" + user + "']").css({top: 350+openedPChatsCount*10, left: 20+openedPChatsCount*100}));
+			$(".popup_chat[data-user='" + user + "'] .chat_control button").popover({
+				html: true,
+				content: smileContainer
+			});
+			drag($(".popup_chat[data-user='" + user + "']").css({
+				top: 350+openedPChatsCount*10,
+				left: 20+openedPChatsCount*100
+			}));
 		} else {
 			openedPChats[user] = false;
 			pcView.removeChat(user);
@@ -33,7 +41,12 @@ define(['jquery',
 				user: user}
 	};
 
-	var pInputStream    = $(document).asEventStream('keyup', ".popup_chat .chat_control div").filter(chkKC(13)).map(inputVal);
+	var pInputStream = $(document)
+			.asEventStream('keyup', ".popup_chat .chat_control div")
+			.filter(chkKC(13))
+			.filter(function(ev) { return $(ev.currentTarget).text()})
+			.map(inputVal);
+
 	var pDisEnterStream = $(document).asEventStream('keydown', ".popup_chat .chat_control div").filter(chkKC(13));
 
 	pDisEnterStream.onValue(function(e) {
@@ -46,14 +59,14 @@ define(['jquery',
 
 	socket.on('pm', function(user, message) {
 		if (openedPChats[user]) {
-			pcView.addMessage(user, user + ": " + message);
+			pcView.addMessage(user, user, message);
 		} else {
 			chatLV.setUnreadMessages(user, 1);
 		}
 	});
 
 	socket.on('pmme', function(user, message) {
-		pcView.addMessage(user, "me: " + message);
+		pcView.addMessage(user, "me", message);
 	});
 
 });

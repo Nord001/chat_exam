@@ -6,7 +6,6 @@ define(['jquery',
 	'bacon'
 ], function($, socket, chatView, smileContainer, chkKC) {
 	
-
 	var $input     = $(".chat_txt_area");
 	var $send_btn  = $('#chat_send');
 	var $smile_btn = $('#chat_smile');

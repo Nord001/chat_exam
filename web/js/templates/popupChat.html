@@ -1,6 +1,5 @@
 <div class="panel panel-info popup_chat" data-user="<%= user_name %>">
 	<div class="panel-heading chat_header">
-		<button type="button" class="close" aria-hidden="true">&times;</button>
 		<h3 class="panel-title">Chat with "<%= user_name %>":</h3>
 	</div>
 	<div class="panel-body chat_messages">
@@ -8,8 +7,7 @@
 		</ul>
 	</div>
 	<div class="panel-footer chat_control">
-		<div contenteditable="true" data-username="<%-user_name%>">
-			
-		</div>
+		<button type="button" data-input=".popup_chat .chat_control div[data-username='<%-user_name%>'" data-toggle="popover" data-placement="top"><img src="img/smile.png"></button>
+		<div contenteditable="true" data-username="<%-user_name%>"></div>
 	</div>
 </div>

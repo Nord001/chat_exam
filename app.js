@@ -29,7 +29,7 @@ if (app.get('env') == 'development') {
 	log.info('dev');
 } else {
 	app.use(express.logger('default'));
-	app.use(express.static(path.join(__dirname, 'web'), { maxAge: 86400000 }));
+	app.use(express.static(path.join(__dirname, 'public'), { maxAge: 86400000 }));
 	log.info('def');
 }
 

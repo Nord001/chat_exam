@@ -2,11 +2,10 @@ define(['jquery',
 	'../services/socket',
 	'../views/chatView',
 	'text!templates/smileContainer.html',
+	'../services/checkKeyCode',
 	'bacon'
-], function($, socket, chatView, smileContainer) {
-	function keyCodeIs(keyCode) { 
-		return function(event) { return event.keyCode == keyCode && !event.shiftKey}
-	};
+], function($, socket, chatView, smileContainer, chkKC) {
+	
 
 	var $input     = $(".chat_txt_area");
 	var $send_btn  = $('#chat_send');
@@ -14,8 +13,8 @@ define(['jquery',
 	var $clear_btn = $('#chat_clear');
 
 	var sendStream = $send_btn.asEventStream('click');
-	var inputStream = $input.asEventStream('keyup').filter(keyCodeIs(13));
-	var disEnterStream = $input.asEventStream('keydown').filter(keyCodeIs(13));
+	var inputStream = $input.asEventStream('keyup').filter(chkKC(13));
+	var disEnterStream = $input.asEventStream('keydown').filter(chkKC(13));
 
 	disEnterStream.onValue(function(e) {
 		e.preventDefault();

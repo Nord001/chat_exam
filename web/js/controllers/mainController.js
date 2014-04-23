@@ -1,9 +1,6 @@
 define(['jquery',
-		'underscore',
-		'controllers/popupChatDraggable',
-		'views/chatListView',
-		'bacon',
-], function($, _, drag, chatLV) {
+		'bacon'
+], function($) {
 	$(function() {
 		var $chat_messages = $("#chat .chat_messages");
 
@@ -15,11 +12,4 @@ define(['jquery',
 			$chat_messages.height($(window).height() - 330);
 		});
 	});
-
-	$(document).on('click', '#chat_close', function() {
-		chatLV.removeChatItem(007);
-	});
-
-	drag($('#id'));
-
 });

@@ -4,15 +4,15 @@ define(['jquery',
 		'bacon',
 ], function($, _, listItem) {
 
-	function addChatItem(user, id) {
+	function setChatItems(user, id) {
 		$("#chat_list div:last-child").append(_.template(listItem, {
 			user_name: user,
-			user_id: id
+			user_id  : id
 		}));
 	};
 
-	function removeChatItem(id) {
-		$("#chat_list div:last-child a[data-id=" + id + "]").remove();
+	function clear() {
+		$("#chat_list div:last-child").html('');
 	};
 
 	function setUnreadMessages(id, count) {
@@ -20,8 +20,8 @@ define(['jquery',
 	};
 
 	return {
-		addChatItem: addChatItem,
-		removeChatItem: removeChatItem,
+		setChatItems     : setChatItems,
+		clear            : clear,
 		setUnreadMessages: setUnreadMessages
 	};
 	

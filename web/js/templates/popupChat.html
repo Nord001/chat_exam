@@ -1,15 +1,15 @@
-<div id="id" class="panel panel-info popup_chat">
+<div class="panel panel-info popup_chat" data-id="<%= user_id %>">
 	<div class="panel-heading chat_header">
 		<button type="button" class="close" aria-hidden="true">&times;</button>
-		<h3 class="panel-title">Chat with "James Bond":</h3>
+		<h3 class="panel-title">Chat with "<%= user_name %>":</h3>
 	</div>
 	<div class="panel-body chat_messages">
 		<ul class="list-unstyled">
 		</ul>
 	</div>
 	<div class="panel-footer chat_control">
-		<div contenteditable="true">
-			you can type messages here
+		<div contenteditable="true" data-username="<%-user_name%>">
+			
 		</div>
 	</div>
 </div>

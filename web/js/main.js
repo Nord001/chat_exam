@@ -22,4 +22,6 @@ require([
 	'controllers/chatController',
 	'controllers/smileController',
 	'controllers/popoversController',
+	'controllers/onlineUsersController',
+	'controllers/popupChatController',
 ]);
